@@ -1,0 +1,15 @@
+<div class="search">
+  <%= search_form_for @search do |f|%>
+    <div class="field">
+      <span class="from">
+        <span>От</span>
+        <%= f.text_field :price_gteq %>
+      </span>
+      <span class="to">
+        <span>До</span>
+        <%= f.text_field :price_lteq %>
+      </span>
+    </div>
+    <div class="search_class"><%= f.submit "Искать", class: 'btn btn-default add_an_item' %> </div>
+  <% end %>
+</div>

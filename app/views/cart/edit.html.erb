@@ -1,0 +1,56 @@
+<% if current_user.cart.positions.count > 0 %>
+<h3>Ваш заказ:</h3>
+
+<table class="table table-bordered">
+  <tr class="head-of-table">
+    <th>Продукт</th>
+    <th>Количество</th>
+    <th>Цена</th>
+    <th>Удалить</th>
+  </tr>
+  <% @positions.each do |p| %>
+    <tr>
+      <td class="item_name_and image">
+        <% i = Item.find(p.item_id) %>
+        <%= i.name %>
+        <%= image_tag i.image.url(:thumb) %>
+      </td>
+      <td class="my_quantity">
+        <%#= p.quantity %>
+        <%= simple_form_for p do |f| %>
+          <span class="my_quantity">
+            <%= f.input :quantity %>
+          </span>
+          <span class="my_button">
+            <%= f.button :submit, "Обновить" %>
+          </span>
+        <% end %>
+      </td>
+      <td>
+        <%= p.price %>
+      </td>
+      <td>
+        <span class="my_delete">
+          <%= link_to 'delete', p, method: :delete, class: 'delete' %>
+        </span>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<h3>Итого: <%= current_user.cart.price %></h3>
+
+<br>
+
+<div class='nav-for-cart'>
+  <%= link_to "Продолжить покупки", root_url, class: 'go-to-items' %> 
+
+<%= link_to "Оформить заказ", cart_make_an_order_path(current_user.cart), class: 'go-to-items make-an-order', method: :put %> 
+
+  <%= link_to "Удалить товары", current_user.cart, class: 'delete-cart', method: :delete %> 
+</div>
+
+<% else %>
+  <%= render "shared/cart_empty" %>
+  
+<% end %>

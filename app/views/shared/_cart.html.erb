@@ -1,0 +1,13 @@
+<% if current_user && current_user.cart %>
+  <li class="b-user-menu_cart" id="my_cart">
+    <%= link_to "Моя корзина (#{current_user.cart.items.count})", edit_cart_path(current_user.cart) %>
+  </li>
+<% else %>
+  <li class="b-user-menu_cart sign_in" id="">
+    <%= link_to 'Регистрация', new_user_registration_url %> 
+  </li>
+  <li class="b-user-menu_cart sign_in" id=""> <a href="#">|</a> </li>
+  <li class="b-user-menu_cart" id="">
+    <%= link_to 'Войти', new_user_session_url %> 
+  </li>
+<% end %>

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  price: 1.5
+  quantity: 1
+  ingredients: MyText
+  how_to_use: MyText
+  presence: false
+
+two:
+  name: MyString
+  description: MyText
+  price: 1.5
+  quantity: 1
+  ingredients: MyText
+  how_to_use: MyText
+  presence: false

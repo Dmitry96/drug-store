@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *default
+  database: db/development.sqlite3
+
+test:
+  <<: *default
+  database: drug_store_test
+
+production:
+  <<: *default
+  username: drug_store
+  database: drug_store_prodaction
+
+development:
+  <<: *default
+  database: drug_store_development
+  password: <%= ENV['TAXI_SERVICE_DATABASE_PASSWORD'] %>

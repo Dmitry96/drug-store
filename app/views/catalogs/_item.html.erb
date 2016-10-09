@@ -1,0 +1,18 @@
+<div class='item' id="item_<%= item.id %>">
+  <span class="item_image"><%= image_tag item.image.url(:thumb) %></span>
+  <br>
+  <span class="price"><%= item.price %></span>
+
+  <%#= link_to item.name, item_path(item) %>
+  <span class="small-text text-center"><%= item.short_description %></span>
+  <br>
+  <div class="small-2 large-4 columns rating_stars">
+    <% if current_user %>
+      <%= rating_for item, "rating", half_show: true, cancel_place: :right  %>
+    <% end %>
+  </div>
+  <div clas='to_cart'>
+    <%= link_to 'В корзину', to_cart_item_path(item), method: :put, class: 'a_to_cart' %>  
+  </div>
+</div>
+

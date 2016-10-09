@@ -1,0 +1,25 @@
+<div class='item' id="item_<%= item.id %>">
+  <span class="item_image"><%= image_tag item.image.url(:thumb) %></span>
+  <span class="price"><%= item.price %></span>
+  <span class="item_name"> <br> 
+    <%= item.name %>
+  </span> <br> 
+  <span class="small-text text-center">
+  <% str = item.short_description %>
+  <%= str[0..70] + "..." if str %>
+  </span>
+  <br>
+  <div class="small-2 large-4 columns rating_stars">
+    <% if true %>
+      <%= rating_for item, "rating", half_show: true, cancel_place: :right  %>
+    <% end %>
+  </div>
+  <div class='to_cart'>
+    <%= link_to 'В корзину', to_cart_item_path(item), method: :put, class: 'a_to_cart' %>  
+  </div>
+    <span class='delete_my'>
+    <%= link_to 'delete', item, method: :delete, remote: true %>
+  </span>
+</div>
+
+

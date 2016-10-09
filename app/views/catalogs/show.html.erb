@@ -1,0 +1,8 @@
+<div class="items">
+  <div class="container_for_filter_and_paginate">
+    <%= render 'shared/filter' %>
+    <%= will_paginate @items, renderer: BootstrapPagination::Rails %>
+  </div>
+  <br> <br> <br>
+    <%= render @items %>
+</div>

@@ -1,0 +1,42 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">Drug Store</a>
+      <a class="navbar-brand phone-number" href="/">8 (495) 788-1-100</a>
+    </div>
+    <div class="navbar-header">
+      
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <%= render 'shared/cart' %>
+        <li>
+        <div class="search">
+          <%= search_form_for @search do |f|%>
+            <div class="field">
+              <%= f.text_field :short_description_cont %>
+            </div>
+            <div class="search_class"><%= f.submit %>
+              <% end %>
+            </div>
+        </div>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<nav>
+  <ul class="nav nav-tabs" id="menu">
+  <% @catalogs.each do |catalog| %>
+    <div class="dropdown">
+      <div class="dropbtn" class="like-a-button"><%= link_to catalog.name, catalog_path(catalog) %></div>
+      <div class="dropdown-content">
+        <% catalog.categories.each do |category| %>
+          <%= link_to category.name, catalog_category_path(catalog, category) %>
+        <% end %> 
+      </div>
+    </div>
+  <% end %> 
+  </ul>
+</nav>

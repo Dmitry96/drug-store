@@ -1,0 +1,11 @@
+<div class="items">
+  <div class="index_paginate_and_filter">
+    <%= render 'shared/filter' %>
+    <% if current_user && current_user.admin? %>
+      <%= link_to "Добавить товар", new_item_path, class: 'btn btn-default add_an_item' %>
+    <% end %>
+    <%= will_paginate @items, renderer: BootstrapPagination::Rails %>
+  </div>
+  <br>
+  <%= render @items %>
+</div>

@@ -1,0 +1,27 @@
+= form_for @order, html: { class: "basic-grey" } do |f|
+  - if @order.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@order.errors.count, "error")
+        prohibited this order from being saved:
+      %ul
+        - @order.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = f.hidden_field :cart_id, value: current_user.cart.id  
+  .field
+    = f.hidden_field :user_id, value: current_user.id     
+  .field
+    = f.hidden_field :price, value: current_user.cart.price
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :phone_number
+    = f.text_field :phone_number
+  .field
+    = f.label :city
+    = f.text_field :city
+  .actions
+    %script.stripe-button{ src: "https://checkout.stripe.com/checkout.js",
+          data: {amount: current_user.cart.price*100, description: current_user.email, key: Rails.application.secrets.stripe_publishable_key}}
